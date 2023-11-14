@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const {addPost} = require('../controllers/postController')
+const {addPost, getAllPosts} = require('../controllers/postController')
 
 router
-    .post('/', addPost)
+    .route('/')
+    .get(getAllPosts)
+    .post(addPost)
     
 
 
