@@ -1,23 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import { AddFrom } from "./components/AddFrom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="relative px-20 py-10">
+        <div className="my-5 bg-white shadow-2xl py-3 rounded-2xl ">
+          <h1 className='text-center text-5xl text-blue-500'>SnapSync</h1>
+        </div>
+        <AddFrom />
+      </div>
     </div>
   );
 }
