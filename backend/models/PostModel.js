@@ -24,6 +24,10 @@ const postSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: [true, 'Please Privide a Picture']
+    },
+    likes: {
+        type:Number,
+        default: 0
     }
 }, {timestamps: true})
 
