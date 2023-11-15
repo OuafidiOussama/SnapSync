@@ -1,6 +1,6 @@
 export function AddFrom(){
     return (
-        <div className="absolute right-0 -translate-x-24  text-center bg-white shadow-lg w-80 rounded-xl py-5 px-10">
+        <div className=" absolute right-0 -translate-x-24  text-center bg-white shadow-lg w-80 rounded-xl py-5 px-10">
           <p className="text-md font-medium pb-2">{"Creating A Memory" || 'Editing '+'"'+''+ '"' }</p>
           <div className="gap-y-4 flex flex-col">
             <div className="relative h-11 w-full min-w-[200px]">
