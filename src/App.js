@@ -1,4 +1,5 @@
 import { AddFrom } from "./components/AddFrom";
+import { PostContainer } from "./components/PostContainer";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
           <h1 className='text-center text-5xl text-blue-500'>SnapSync</h1>
         </div>
         <AddFrom />
+        <PostContainer/>
       </div>
     </div>
   );
