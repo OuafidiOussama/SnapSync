@@ -1,31 +1,29 @@
 import React from 'react';
 
-const PostCard = () =>
-{
+const PostCard = ({post}) =>{
+  const {_id, createdAt, creator, tags, title, message, likes, picture} = post 
   return (
-    <div className="w-80 bg-white shadow rounded-lg overflow-hidden mt-20 ml-20">
-
-      <div
-        className="h-48 w-full bg-gray-200 flex flex-col  p-4 bg-cover bg-center"
-        style={{ backgroundImage: "url('https://images.pexels.com/photos/7989741/pexels-photo-7989741.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')" }}
-      >
-        <div className="flex justify-between">
-          <h2 className='text-white'>test</h2>
-          <button >
-            <svg
-              fill='#ffff' xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" /></svg>
-          </button>
-
+    <div className="w-80 h-[450px] bg-white shadow-lg rounded-lg border-[1px] overflow-hidden ">
+      <div className="w-full h-1/2 relative">
+            <div className="w-full h-full absolute bg-black opacity-40"></div>
+            <img src={picture} alt="hello" className="object-cover w-full h-full" />
+            <div className="absolute w-full h-full top-0 flex px-5 pt-5 justify-between text-white">
+                <p className="text-xl flex flex-col">{creator}<span className="text-sm">{createdAt}</span></p>
+                <button className='h-12'>
+                  <svg
+                    fill='#ffff' xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" width="24"><path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" /></svg>
+                </button>
+            </div>
         </div>
-        <p className='text-xs text-white'>3 hours ago</p>
-      </div>
+
+
 
       <div className="p-4 flex flex-col ">
-        <p className="text-gray-800 font-light text-2xs ">
-          #test
+        <p className="text-gray-800 font-light ">
+          {tags}
         </p>
-        <p className="text-gray-800 mt-7 text-2xl  ">test</p>
-        <p className="text-gray-400	 mt-7">test</p>
+        <p className="text-gray-800 mt-7 text-2xl  ">{title}</p>
+        <p className="text-gray-400	 mt-7">{message}</p>
 
 
 
@@ -33,7 +31,7 @@ const PostCard = () =>
           <button>
             <div className="flex items-center text-gray-500">
               <svg fill='#3F42F1' xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M720-120H280v-520l280-280 50 50q7 7 11.5 19t4.5 23v14l-44 174h258q32 0 56 24t24 56v80q0 7-2 15t-4 15L794-168q-9 20-30 34t-44 14Zm-360-80h360l120-280v-80H480l54-220-174 174v406Zm0-406v406-406Zm-80-34v80H160v360h120v80H80v-520h200Z" /></svg>
-              <p className='text-indigo-500'>LIKE 0</p>
+              <p className='text-indigo-500'>LIKE {likes}</p>
             </div>
           </button>
 

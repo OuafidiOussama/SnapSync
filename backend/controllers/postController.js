@@ -3,7 +3,14 @@ const Post = require('../models/PostModel')
 addPost = async (req, res) =>
 {
     try {
-        const post = await Post.create(req.body)
+        const data = {
+            creator: req.body.creator,
+            title: req.body.title,
+            message: req.body.message,
+            tags: req.body.tags,
+            picture: req.body.picture 
+        }
+        const post = await Post.create(data)
         res.status(201).json({
             success: true,
             post: post
@@ -24,7 +31,7 @@ getAllPosts = async (req, res) =>
         const posts = await Post.find()
         res.status(201).json({
             success: true,
-            posts: posts
+            posts: [posts]
         })
     } catch (error) {
         console.log(error);
