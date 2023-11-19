@@ -6,8 +6,9 @@ router
     .route('/')
     .get(getAllPosts)
     .post(addPost)
+    .patch(likePost)
 
-router.put('/like/:id', likePost)
+// router.patch('/like', likePost)
 router.delete('/delete/:id', deletePost);
 router.put('/update/:id', updatePost);
 

@@ -1,20 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PostCard from './PostCard';
-import { useEffect, useState } from "react"
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllPosts } from '../redux/actions/posts';
 
 export const PostContainer = () => {
-  const [posts, setPosts] = useState('')
-  const getPosts = async ()=>{
-    await axios.get("http://localhost:5000/api/posts")
-    .then(res=>{
-      setPosts(res.data.posts)
-      // console.log(res.data.posts[0]);
-    }).catch(err=> console.error(err))
-  }
-  useEffect(()=>{
-    getPosts()
-  }, [])
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts);
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, [dispatch]);
   return (
     <div className="w-9/12 flex gap-5 flex-wrap">
       {
