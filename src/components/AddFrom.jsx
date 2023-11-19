@@ -1,9 +1,12 @@
-import axios from "axios"
-import { useState } from "react"
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createPost } from "../redux/actions/posts";
 import FileBase from "react-file-base64";
 export function AddFrom(){
+  const dispatch = useDispatch();
 
   const initialState = {
+    id: '',
     creator : "",
     title: "",
     message: "",
@@ -13,16 +16,15 @@ export function AddFrom(){
 
   const [data, setData] = useState(initialState)
   
-  const addPostHandler = async (e) =>{
+  const addPostHandler =(e) =>{
     e.preventDefault()
-    try {
-      console.log(data)
-      const res = await axios.post('http://localhost:5000/api/posts', data);
-      console.log(res)
-      setData(initialState)
-    } catch (error) {
-      console.error(error);
-    }
+    dispatch(createPost(data.creator, data.title, data.message, data.tags, data.picture))
+    .then((res)=>{
+      console.log(res.post);
+      // setData(initialState)
+    })
+    .catch(err=>console.error(err))
+    e.target.reset();
   }
 
     return (

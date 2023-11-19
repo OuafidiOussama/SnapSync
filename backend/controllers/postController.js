@@ -45,7 +45,7 @@ getAllPosts = async (req, res) =>
 likePost = async (req, res) =>
 {
     try {
-        const postId = req.params.id
+        const postId = req.body.id
         const post = await Post.findById({ _id: postId })
         if (post) {
             let newlikes = post.likes + 1
@@ -54,7 +54,7 @@ likePost = async (req, res) =>
             const newPost = await Post.findByIdAndUpdate(filter, update, { new: true })
             res.status(201).json({
                 success: true,
-                post: newPost
+                likes: newPost.likes
             })
         } else {
             res.status(400).json({
