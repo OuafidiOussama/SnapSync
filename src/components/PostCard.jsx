@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import moment from 'moment'
+import { Like } from '../redux/actions/posts';
 
 const PostCard = ({post}) =>{
-  const {_id, createdAt, creator, tags, title, message, likes, picture} = post 
+  const dispatch = useDispatch();
+  const {_id, createdAt, creator, tags, title, message, likes, picture} = post
+  const createdTime = moment(createdAt).fromNow()
+
+  const [likeCount, setLikeCount] = useState(likes);
+  const sendLike = async(e)=>{
+    e.preventDefault()
+    dispatch(Like({id: _id}))
+    .then((res)=>{
+      console.log(res)
+      setLikeCount(res)
+    })
+    .catch(err=>console.error(err))
+    
+  }
   return (
     <div className="w-80 h-[450px] bg-white shadow-lg rounded-lg border-[1px] overflow-hidden ">
       <div className="w-full h-1/2 relative">
             <div className="w-full h-full absolute bg-black opacity-40"></div>
             <img src={picture} alt="hello" className="object-cover w-full h-full" />
             <div className="absolute w-full h-full top-0 flex px-5 pt-5 justify-between text-white">
-                <p className="text-xl flex flex-col">{creator}<span className="text-sm">{createdAt}</span></p>
+                <p className="text-xl flex flex-col">{creator}<span className="text-sm">{createdTime}</span></p>
                 <button className='h-12'>
                   <svg
                     fill='#ffff' xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" width="24"><path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" /></svg>
@@ -28,14 +45,14 @@ const PostCard = ({post}) =>{
 
 
         <div className="flex justify-between w-full mt-4">
-          <button>
-            <div className="flex items-center text-gray-500">
-              <svg fill='#3F42F1' xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M720-120H280v-520l280-280 50 50q7 7 11.5 19t4.5 23v14l-44 174h258q32 0 56 24t24 56v80q0 7-2 15t-4 15L794-168q-9 20-30 34t-44 14Zm-360-80h360l120-280v-80H480l54-220-174 174v406Zm0-406v406-406Zm-80-34v80H160v360h120v80H80v-520h200Z" /></svg>
-              <p className='text-indigo-500'>LIKE {likes}</p>
-            </div>
-          </button>
-
-
+          <form onSubmit={sendLike}>
+            <button type="submit">
+              <div className="flex items-center text-gray-500">
+                <svg fill='#3F42F1' xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M720-120H280v-520l280-280 50 50q7 7 11.5 19t4.5 23v14l-44 174h258q32 0 56 24t24 56v80q0 7-2 15t-4 15L794-168q-9 20-30 34t-44 14Zm-360-80h360l120-280v-80H480l54-220-174 174v406Zm0-406v406-406Zm-80-34v80H160v360h120v80H80v-520h200Z" /></svg>
+                <p className='text-indigo-500' id={_id}>LIKE {likeCount}</p>
+              </div>
+            </button>
+          </form>
 
           <div>
             <button
