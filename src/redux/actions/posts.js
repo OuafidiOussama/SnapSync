@@ -1,4 +1,4 @@
-import {CREATE_POST, GET_POSTS} from './types'
+import {CREATE_POST, GET_POSTS, LIKE_POST} from './types'
 import postsService from '../services/posts.service'
 
 export const createPost = (creator, title, message, tags, picture)=> async(dispatch)=>{
@@ -34,7 +34,7 @@ export const Like = (id)=> async(dispatch)=>{
     try {
         const res = await postsService.like(id)
         dispatch({
-            type: CREATE_POST,
+            type: LIKE_POST,
             payload: res.data.likes
         })
         // console.log(res.data.likes);

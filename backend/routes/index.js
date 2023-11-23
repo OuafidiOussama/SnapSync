@@ -3,6 +3,9 @@ const router = express.Router()
 
 
 const postsRouter = require('./posts')
-router.use('/api/posts', postsRouter)
+router.use('/posts', postsRouter)
+
+const usersRouter = require('./users')
+router.use('/user', usersRouter)
 
 module.exports = router

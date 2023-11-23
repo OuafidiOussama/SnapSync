@@ -1,4 +1,4 @@
-import {CREATE_POST, GET_POSTS} from '../actions/types'
+import {CREATE_POST, GET_POSTS, LIKE_POST} from '../actions/types'
 
 const initialState = []
 
@@ -11,6 +11,9 @@ function postReducer(posts = initialState, action){
         
         case GET_POSTS:
             return payload
+
+        case LIKE_POST:
+            return [...posts, payload]
 
         default:
             return posts

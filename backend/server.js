@@ -1,7 +1,6 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-const path = require('path')
 const app = express()
 
 
@@ -14,7 +13,7 @@ app.use(cors())
 
 
 const indexRoute = require('./routes')
-app.use(indexRoute)
+app.use("/api",indexRoute)
 
 
 app.listen(process.env.PORT, ()=>{

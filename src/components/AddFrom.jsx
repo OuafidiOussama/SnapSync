@@ -27,6 +27,7 @@ export function AddFrom(){
     e.target.reset();
   }
 
+  
     return (
       <form onSubmit={addPostHandler}>
         <div className="absolute right-0 -translate-x-24  text-center bg-white shadow-lg w-80 rounded-xl py-5 px-10">
