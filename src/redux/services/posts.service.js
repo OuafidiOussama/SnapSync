@@ -2,15 +2,24 @@ import http from '../axios'
 
 class PostServices {
 
-    getAll(){
+    getAllPosts(){
         return http.get("/posts")
     }
 
-    create(data){
+    createPost(data){
         return http.post('/posts', data)
     }
 
-    like(id){
+    updatePost(id){
+        return http.put('/posts', id)
+    }
+
+    deletePost(id){
+        console.log(id);
+        return http.delete('/posts', id)
+    }
+
+    likePost(id){
         return http.patch('/posts', id)
     }
 }

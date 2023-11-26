@@ -1,6 +1,7 @@
 import React from 'react'
 import { Icon } from '@iconify/react';
 import Input from "../components/atoms/Input";
+import Button from './atoms/Button';
 
 const Login = () => {
   return (
@@ -10,7 +11,7 @@ const Login = () => {
             <h1 className="text-2xl font-medium">Sign in</h1>
             <Input label="Email" name="email" />
             <Input label="Password" name="password" />
-            <button className="bg-blue-900 text-white w-full py-1.5 rounded-md shadow-md mt-3">SIGN IN</button>
+            <Button label="sign in" bg="indigo-700" hover="indigo-900" type="submit" w="full mt-3"/>
         </div>
         <div className="flex border-gray-400 border p-1.5 rounded-md items-center gap-3 w-fit mt-7 cursor-pointer">
             <Icon icon="flat-color-icons:google" className="w-6 h-6" />
@@ -34,7 +35,7 @@ const Register = ()=>{
             <Input label="Email*" name="email"/>
             <Input label="Password*" name="password"/>
             <Input label="Confirm Password*" name="confirmPassword"/>
-            <button className="bg-blue-900 text-white w-full py-1.5 rounded-md shadow-md mt-3">SIGN IN</button>
+            <Button label="sign up" bg="indigo-700" hover="indigo-900" type="submit" w="full"/>
         </div>
         <div className="flex border-gray-400 border p-1.5 rounded-md items-center gap-3 w-fit mt-7 cursor-pointer">
             <Icon icon="flat-color-icons:google" className="w-6 h-6" />

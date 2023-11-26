@@ -73,23 +73,30 @@ likePost = async (req, res) =>
 
 updatePost = async (req, res) => {
     try {
-      const postId = req.params.id;
-      const updatedPost = await Post.findOneAndUpdate(
-        { _id: postId },
-        req.body, // assuming req.body contains the updated post data
-        { new: true }
-      );
+        const postId = req.body.id;
+        const data = {
+            creator: req.body.creator,
+            title: req.body.title,
+            message: req.body.message,
+            tags: req.body.tags,
+            picture: req.body.picture 
+        }
+        const updatedPost = await Post.findOneAndUpdate(
+            { _id: postId },
+            data,
+            { new: true }
+        );
 
-      if (updatedPost) {
-        res.status(200).json({
-          success: true,
-          post: updatedPost,
+        if (updatedPost) {
+            res.status(200).json({
+              success: true,
+              post: updatedPost,
         });
-      } else {
-        res.status(404).json({
-          success: false,
-          message: 'Post not found',
-        });
+        } else {
+            res.status(404).json({
+            success: false,
+            message: 'Post not found',
+            });
       }
     } catch (error) {
       console.error(error);
@@ -104,9 +111,9 @@ updatePost = async (req, res) => {
 deletePost = async (req, res) =>
 {
     try {
-        const postId = req.params.id;
+        const postId = req.body.id;
         const deletedPost = await Post.findByIdAndDelete({ _id: postId });
-
+        
         if (deletedPost) {
             res.status(200).json({
                 success: true,

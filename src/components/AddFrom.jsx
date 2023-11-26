@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createPost } from "../redux/actions/posts";
+import { createPost, updatePost } from "../redux/actions/posts";
 import FileBase from "react-file-base64";
+import Button from "./atoms/Button";
+
+
 export function AddFrom(){
   const dispatch = useDispatch();
 
@@ -85,8 +88,8 @@ export function AddFrom(){
               />
             </div>
             <div className="flex flex-col gap-y-2">
-                <button className="bg-indigo-700 hover:bg-indigo-900 text-white font-bold py-2 w-full rounded transition-all duration-300" type="submit">SUBMIT</button>
-                <button className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 w-full rounded transition-all duration-300">CANCEL</button>
+                <Button label="submit" bg="indigo-700" hover="indigo-900" type="submit"/>
+                <Button label="cancel" bg="red-600" hover="red-800" />
             </div>
           </div>
         </div>

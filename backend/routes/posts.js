@@ -8,6 +8,8 @@ router
     .get(getAllPosts)
     .post(addPost)
     .patch(likePost)
+    .put(updatePost)
+    .delete(deletePost)
 
 router
     .route('/protected')
@@ -15,8 +17,5 @@ router
         res.send('authenticated !!')
     })
 
-// router.patch('/like', likePost)
-router.delete('/delete/:id', deletePost);
-router.put('/update/:id', updatePost);
 
 module.exports = router

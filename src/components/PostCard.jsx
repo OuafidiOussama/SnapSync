@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import moment from 'moment'
-import { Like } from '../redux/actions/posts';
+import { Like, deletePost} from '../redux/actions/posts';
 
 const PostCard = ({post}) =>{
   const dispatch = useDispatch();
@@ -9,15 +9,21 @@ const PostCard = ({post}) =>{
   const createdTime = moment(createdAt).fromNow()
 
   const [likeCount, setLikeCount] = useState(likes);
+
   const sendLike = async(e)=>{
     e.preventDefault()
     dispatch(Like({id: _id}))
     .then((res)=>{
-      console.log(res)
       setLikeCount(res)
     })
     .catch(err=>console.error(err))
-    
+  }
+  const deleteHandler = async (e)=>{
+    e.preventDefault()
+    console.log(_id);
+    dispatch(deletePost({ id: _id }))
+    .then(res=> console.log(res))
+    .catch(err=>console.error(err))
   }
   return (
     <div className="w-80 h-[450px] bg-white shadow-lg rounded-lg border-[1px] overflow-hidden ">
@@ -26,7 +32,7 @@ const PostCard = ({post}) =>{
             <img src={picture} alt="hello" className="object-cover w-full h-full" />
             <div className="absolute w-full h-full top-0 flex px-5 pt-5 justify-between text-white">
                 <p className="text-xl flex flex-col">{creator}<span className="text-sm">{createdTime}</span></p>
-                <button className='h-12'>
+                <button className='h-12' id=''>
                   <svg
                     fill='#ffff' xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" width="24"><path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" /></svg>
                 </button>
@@ -55,11 +61,13 @@ const PostCard = ({post}) =>{
           </form>
 
           <div>
-            <button
-              className="py-1 px-4 bg-white text-gray-600 rounded hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center">
-              <svg fill='#3F42F1' xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" /></svg>
-              <p className='text-indigo-500'>DELETE</p>
-            </button>
+            <form onSubmit={deleteHandler}>
+              <button type='submit'
+                className="py-1 px-4 bg-white text-gray-600 rounded hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center">
+                <svg fill='#3F42F1' xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" /></svg>
+                <p className='text-indigo-500' id={_id}>DELETE</p>
+              </button>
+            </form>
           </div>
 
 
