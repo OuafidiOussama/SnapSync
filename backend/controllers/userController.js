@@ -51,6 +51,7 @@ login = async (req,res)=>{
             })
         }
         const token = jwtGenerateToken(user)
+
         res.status(200).json({
             success: true,
             message: "login successful",

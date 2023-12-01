@@ -3,27 +3,27 @@ const postSchema = new mongoose.Schema({
     creator:{
         type: String,
         trim: true,
-        required: [true, 'Please Privide a Creator Name']
+        required: [true, 'Please Provide a Creator Name']
     },
     title:{
         type: String,
         trim: true,
-        required: [true, 'Please Privide a Title']
+        required: [true, 'Please Provide a Title']
     },
     message:{
         type: String,
         trim: true,
-        required: [true, 'Please Privide a Message']
+        required: [true, 'Please Provide a Message']
     },
     tags:{
         type: String,
         trim: true,
-        required: [true, 'Please Privide at least one Tag']
+        required: [true, 'Please Provide at least one Tag']
     },
     picture:{
         type: String,
         trim: true,
-        required: [true, 'Please Privide a Picture']
+        required: [true, 'Please Provide a Picture']
     },
     likes: {
         type:Number,

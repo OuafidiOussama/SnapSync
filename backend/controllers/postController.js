@@ -73,7 +73,7 @@ likePost = async (req, res) =>
 
 updatePost = async (req, res) => {
     try {
-        const postId = req.body.id;
+        const postId = req.params.id;
         const data = {
             creator: req.body.creator,
             title: req.body.title,
@@ -111,7 +111,7 @@ updatePost = async (req, res) => {
 deletePost = async (req, res) =>
 {
     try {
-        const postId = req.body.id;
+        const postId = req.params.id;
         const deletedPost = await Post.findByIdAndDelete({ _id: postId });
         
         if (deletedPost) {
